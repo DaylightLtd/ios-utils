@@ -21,6 +21,7 @@
 		8122CE3B20DBF2D70020A2F6 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3A20DBF2D70020A2F6 /* UITableView+Extensions.swift */; };
 		8122CE3D20DBF31F0020A2F6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3C20DBF31F0020A2F6 /* UIView+Extensions.swift */; };
 		8122CE3F20DBF36C0020A2F6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3E20DBF36C0020A2F6 /* UIViewController+Extensions.swift */; };
+		8122CE4220DBF3F30020A2F6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE4120DBF3F30020A2F6 /* Weekday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		8122CE3A20DBF2D70020A2F6 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		8122CE3C20DBF31F0020A2F6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		8122CE3E20DBF36C0020A2F6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE4120DBF3F30020A2F6 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				8122CE1720DBEB560020A2F6 /* Error */,
 				8122CE1D20DBEBC30020A2F6 /* Extensions */,
 				8122CE1A20DBEB7B0020A2F6 /* Logging */,
+				8122CE4020DBF3E20020A2F6 /* Weekday */,
 				8122CE1020DBEB0A0020A2F6 /* Info.plist */,
 			);
 			path = DaylightUtils;
@@ -121,6 +124,14 @@
 				8122CE3020DBF2460020A2F6 /* ActivityIndicator.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8122CE4020DBF3E20020A2F6 /* Weekday */ = {
+			isa = PBXGroup;
+			children = (
+				8122CE4120DBF3F30020A2F6 /* Weekday.swift */,
+			);
+			path = Weekday;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 				8122CE3120DBF2460020A2F6 /* ActivityIndicator.swift in Sources */,
 				8122CE3420DBF24F0020A2F6 /* Int+Extensions.swift in Sources */,
 				8122CE3F20DBF36C0020A2F6 /* UIViewController+Extensions.swift in Sources */,
+				8122CE4220DBF3F30020A2F6 /* Weekday.swift in Sources */,
 				8122CE2320DBED800020A2F6 /* ParsingError.swift in Sources */,
 				8122CE3720DBF2640020A2F6 /* Observable+Extensions.swift in Sources */,
 				8122CE2520DBED920020A2F6 /* SystemError.swift in Sources */,
