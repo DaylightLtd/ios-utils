@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8122CE1120DBEB0A0020A2F6 /* DaylightUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8122CE0F20DBEB0A0020A2F6 /* DaylightUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8122CE1920DBEB6F0020A2F6 /* ErrorReporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE1820DBEB6F0020A2F6 /* ErrorReporting.swift */; };
+		8122CE1C20DBEB9F0020A2F6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE1B20DBEB9F0020A2F6 /* Logger.swift */; };
+		8122CE1F20DBEBD90020A2F6 /* Any+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE1E20DBEBD90020A2F6 /* Any+Utils.swift */; };
+		8122CE2120DBEC170020A2F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE2020DBEC170020A2F6 /* String+Extensions.swift */; };
+		8122CE2320DBED800020A2F6 /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE2220DBED7F0020A2F6 /* ParsingError.swift */; };
+		8122CE2520DBED920020A2F6 /* SystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE2420DBED920020A2F6 /* SystemError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8122CE0C20DBEB0A0020A2F6 /* DaylightUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DaylightUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8122CE0F20DBEB0A0020A2F6 /* DaylightUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaylightUtils.h; sourceTree = "<group>"; };
 		8122CE1020DBEB0A0020A2F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8122CE1820DBEB6F0020A2F6 /* ErrorReporting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporting.swift; sourceTree = "<group>"; };
+		8122CE1B20DBEB9F0020A2F6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		8122CE1E20DBEBD90020A2F6 /* Any+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Any+Utils.swift"; sourceTree = "<group>"; };
+		8122CE2020DBEC170020A2F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE2220DBED7F0020A2F6 /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
+		8122CE2420DBED920020A2F6 /* SystemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +56,39 @@
 		8122CE0E20DBEB0A0020A2F6 /* DaylightUtils */ = {
 			isa = PBXGroup;
 			children = (
-				8122CE0F20DBEB0A0020A2F6 /* DaylightUtils.h */,
+				8122CE1720DBEB560020A2F6 /* Error */,
+				8122CE1D20DBEBC30020A2F6 /* Extensions */,
+				8122CE1A20DBEB7B0020A2F6 /* Logging */,
 				8122CE1020DBEB0A0020A2F6 /* Info.plist */,
 			);
 			path = DaylightUtils;
+			sourceTree = "<group>";
+		};
+		8122CE1720DBEB560020A2F6 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				8122CE1820DBEB6F0020A2F6 /* ErrorReporting.swift */,
+				8122CE2220DBED7F0020A2F6 /* ParsingError.swift */,
+				8122CE2420DBED920020A2F6 /* SystemError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		8122CE1A20DBEB7B0020A2F6 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				8122CE1B20DBEB9F0020A2F6 /* Logger.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		8122CE1D20DBEBC30020A2F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8122CE1E20DBEBD90020A2F6 /* Any+Utils.swift */,
+				8122CE2020DBEC170020A2F6 /* String+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,7 +98,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8122CE1120DBEB0A0020A2F6 /* DaylightUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +133,7 @@
 				TargetAttributes = {
 					8122CE0B20DBEB0A0020A2F6 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -130,6 +169,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8122CE2120DBEC170020A2F6 /* String+Extensions.swift in Sources */,
+				8122CE1920DBEB6F0020A2F6 /* ErrorReporting.swift in Sources */,
+				8122CE1F20DBEBD90020A2F6 /* Any+Utils.swift in Sources */,
+				8122CE1C20DBEB9F0020A2F6 /* Logger.swift in Sources */,
+				8122CE2320DBED800020A2F6 /* ParsingError.swift in Sources */,
+				8122CE2520DBED920020A2F6 /* SystemError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,12 +233,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -245,11 +291,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -259,6 +306,7 @@
 		8122CE1520DBEB0A0020A2F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -275,7 +323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hr.daylight.DaylightUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -283,6 +331,7 @@
 		8122CE1620DBEB0A0020A2F6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -299,7 +348,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hr.daylight.DaylightUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
