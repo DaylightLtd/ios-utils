@@ -13,6 +13,14 @@
 		8122CE2120DBEC170020A2F6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE2020DBEC170020A2F6 /* String+Extensions.swift */; };
 		8122CE2320DBED800020A2F6 /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE2220DBED7F0020A2F6 /* ParsingError.swift */; };
 		8122CE2520DBED920020A2F6 /* SystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE2420DBED920020A2F6 /* SystemError.swift */; };
+		8122CE3120DBF2460020A2F6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3020DBF2460020A2F6 /* ActivityIndicator.swift */; };
+		8122CE3420DBF24F0020A2F6 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3220DBF24F0020A2F6 /* Int+Extensions.swift */; };
+		8122CE3520DBF24F0020A2F6 /* NotificationCenter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3320DBF24F0020A2F6 /* NotificationCenter+Extensions.swift */; };
+		8122CE3720DBF2640020A2F6 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3620DBF2640020A2F6 /* Observable+Extensions.swift */; };
+		8122CE3920DBF28F0020A2F6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3820DBF28F0020A2F6 /* UIApplication+Extensions.swift */; };
+		8122CE3B20DBF2D70020A2F6 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3A20DBF2D70020A2F6 /* UITableView+Extensions.swift */; };
+		8122CE3D20DBF31F0020A2F6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3C20DBF31F0020A2F6 /* UIView+Extensions.swift */; };
+		8122CE3F20DBF36C0020A2F6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8122CE3E20DBF36C0020A2F6 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		8122CE2020DBEC170020A2F6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		8122CE2220DBED7F0020A2F6 /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
 		8122CE2420DBED920020A2F6 /* SystemError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemError.swift; sourceTree = "<group>"; };
+		8122CE3020DBF2460020A2F6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		8122CE3220DBF24F0020A2F6 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE3320DBF24F0020A2F6 /* NotificationCenter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE3620DBF2640020A2F6 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE3820DBF28F0020A2F6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE3A20DBF2D70020A2F6 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE3C20DBF31F0020A2F6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		8122CE3E20DBF36C0020A2F6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 		8122CE0E20DBEB0A0020A2F6 /* DaylightUtils */ = {
 			isa = PBXGroup;
 			children = (
+				8122CE2F20DBF2460020A2F6 /* Components */,
 				8122CE1720DBEB560020A2F6 /* Error */,
 				8122CE1D20DBEBC30020A2F6 /* Extensions */,
 				8122CE1A20DBEB7B0020A2F6 /* Logging */,
@@ -86,9 +103,24 @@
 			isa = PBXGroup;
 			children = (
 				8122CE1E20DBEBD90020A2F6 /* Any+Utils.swift */,
+				8122CE3220DBF24F0020A2F6 /* Int+Extensions.swift */,
+				8122CE3320DBF24F0020A2F6 /* NotificationCenter+Extensions.swift */,
+				8122CE3620DBF2640020A2F6 /* Observable+Extensions.swift */,
 				8122CE2020DBEC170020A2F6 /* String+Extensions.swift */,
+				8122CE3820DBF28F0020A2F6 /* UIApplication+Extensions.swift */,
+				8122CE3A20DBF2D70020A2F6 /* UITableView+Extensions.swift */,
+				8122CE3C20DBF31F0020A2F6 /* UIView+Extensions.swift */,
+				8122CE3E20DBF36C0020A2F6 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8122CE2F20DBF2460020A2F6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8122CE3020DBF2460020A2F6 /* ActivityIndicator.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +201,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8122CE3920DBF28F0020A2F6 /* UIApplication+Extensions.swift in Sources */,
 				8122CE2120DBEC170020A2F6 /* String+Extensions.swift in Sources */,
 				8122CE1920DBEB6F0020A2F6 /* ErrorReporting.swift in Sources */,
+				8122CE3B20DBF2D70020A2F6 /* UITableView+Extensions.swift in Sources */,
+				8122CE3520DBF24F0020A2F6 /* NotificationCenter+Extensions.swift in Sources */,
+				8122CE3D20DBF31F0020A2F6 /* UIView+Extensions.swift in Sources */,
 				8122CE1F20DBEBD90020A2F6 /* Any+Utils.swift in Sources */,
 				8122CE1C20DBEB9F0020A2F6 /* Logger.swift in Sources */,
+				8122CE3120DBF2460020A2F6 /* ActivityIndicator.swift in Sources */,
+				8122CE3420DBF24F0020A2F6 /* Int+Extensions.swift in Sources */,
+				8122CE3F20DBF36C0020A2F6 /* UIViewController+Extensions.swift in Sources */,
 				8122CE2320DBED800020A2F6 /* ParsingError.swift in Sources */,
+				8122CE3720DBF2640020A2F6 /* Observable+Extensions.swift in Sources */,
 				8122CE2520DBED920020A2F6 /* SystemError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
