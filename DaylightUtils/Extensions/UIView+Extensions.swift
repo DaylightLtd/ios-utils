@@ -47,7 +47,7 @@ extension Reactive where Base: UIView {
         }
     }
     
-    public static func animate(duration: TimeInterval, delay: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void) -> Completable {
+    public static func animate(duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions, animations: @escaping () -> Void) -> Completable {
         return Completable.create { observer in
             UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations, completion: { _ in
                 observer(.completed)
@@ -56,7 +56,7 @@ extension Reactive where Base: UIView {
         }
     }
     
-    public static func animate(duration: TimeInterval, delay: TimeInterval, springWithDamping: CGFloat, initialSpringVelocity: CGFloat, options: UIViewAnimationOptions, animations: @escaping () -> Void) -> Completable {
+    public static func animate(duration: TimeInterval, delay: TimeInterval, springWithDamping: CGFloat, initialSpringVelocity: CGFloat, options: UIView.AnimationOptions, animations: @escaping () -> Void) -> Completable {
         return Completable.create { observer in
             UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: springWithDamping, initialSpringVelocity: initialSpringVelocity, options: options, animations: animations, completion: { _ in
                 observer(.completed)

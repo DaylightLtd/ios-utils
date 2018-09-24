@@ -37,32 +37,32 @@ extension Reactive where Base: UIViewController {
     
     public func showAnimated(child: UIViewController, duration: TimeInterval, configure: @escaping (UIView) -> ()) -> Completable {
         return Completable.deferred {
-            self.base.addChildViewController(child)
+            self.base.addChild(child)
             configure(child.view)
             child.view.alpha = 0
             self.base.view.addSubview(child.view)
             return UIView.rx
                 .animate(duration: duration) { child.view.alpha = 1 }
-                .do(onCompleted: { child.didMove(toParentViewController: self.base) })
+                .do(onCompleted: { child.didMove(toParent: self.base) })
         }
     }
     
     public func hideAnimated(child: UIViewController, duration: TimeInterval) -> Completable {
         return Completable.deferred {
-            child.willMove(toParentViewController: nil)
+            child.willMove(toParent: nil)
             return UIView.rx
                 .animate(duration: duration) { child.view.alpha = 0 }
-                .do(onCompleted: { child.view.removeFromSuperview(); child.removeFromParentViewController() })
+                .do(onCompleted: { child.view.removeFromSuperview(); child.removeFromParent() })
         }
     }
     
     public func removeChildViewControllers(duration: TimeInterval) -> Completable {
-        guard !self.base.childViewControllers.isEmpty else { return Completable.empty() }
-        return Completable.merge(self.base.childViewControllers.map { (child: UIViewController) -> Completable in
-            child.willMove(toParentViewController: nil)
+        guard !self.base.children.isEmpty else { return Completable.empty() }
+        return Completable.merge(self.base.children.map { (child: UIViewController) -> Completable in
+            child.willMove(toParent: nil)
             return UIView.rx
                 .animate(duration: duration) { child.view.alpha = 0 }
-                .do(onCompleted: { child.view.removeFromSuperview(); child.removeFromParentViewController() })
+                .do(onCompleted: { child.view.removeFromSuperview(); child.removeFromParent() })
         })
     }
 }

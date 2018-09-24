@@ -14,11 +14,11 @@ extension Reactive where Base: NotificationCenter {
     public var keyboardHeight: Observable<CGFloat> {
         return Observable.deferred {
             let keyboardWillShow = self
-                .notification(Notification.Name.UIKeyboardWillShow)
-                .map { (($0.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect) ?? CGRect.zero).height }
+                .notification(UIResponder.keyboardWillShowNotification)
+                .map { (($0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect) ?? CGRect.zero).height }
             
             let keyboardWillHide = NotificationCenter.default.rx
-                .notification(Notification.Name.UIKeyboardWillHide)
+                .notification(UIResponder.keyboardWillHideNotification)
                 .map { _ in CGFloat(0) }
             
             return Observable.merge(keyboardWillShow, keyboardWillHide)
