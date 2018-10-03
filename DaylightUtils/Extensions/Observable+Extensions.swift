@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 extension ObservableType {
-    public func asDriverIgnoringErrors() -> Driver<E> {
+    public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<E> {
         return asDriver(onErrorRecover: { e in
-            reportError(e)
+            reportError(e, file: file, function: function, line: line)
             #if DEBUG
             fatalError("\(e)")
             #else
@@ -22,9 +22,9 @@ extension ObservableType {
         })
     }
     
-    public func asSignalIgnoringErrors() -> Signal<E> {
+    public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<E> {
         return asSignal(onErrorRecover: { e in
-            reportError(e)
+            reportError(e, file: file, function: function, line: line)
             #if DEBUG
             fatalError("\(e)")
             #else
@@ -97,9 +97,9 @@ extension SharedSequence where E == Void {
 }
 
 extension PrimitiveSequence {
-    public func asDriverIgnoringErrors() -> Driver<E> {
+    public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<E> {
         return asDriver(onErrorRecover: { e in
-            reportError(e)
+            reportError(e, file: file, function: function, line: line)
             #if DEBUG
             fatalError("\(e)")
             #else
@@ -108,9 +108,9 @@ extension PrimitiveSequence {
         })
     }
     
-    public func asSignalIgnoringErrors() -> Signal<E> {
+    public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<E> {
         return asSignal(onErrorRecover: { e in
-            reportError(e)
+            reportError(e, file: file, function: function, line: line)
             #if DEBUG
             fatalError("\(e)")
             #else
