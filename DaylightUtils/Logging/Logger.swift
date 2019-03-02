@@ -9,36 +9,34 @@
 import Foundation
 
 public struct Debug {
+    #if DEBUG
+    public static var isEnabled = true
+    #else
+    public static var isEnabled = false
+    #endif
+    
     public static var isLoggingEnabled = false
     
     public static func log(_ error: Error) {
-        #if DEBUG
-        debugPrint(error)
-        #else
-        if isLoggingEnabled {
+        if Debug.isEnabled || Debug.isLoggingEnabled {
             debugPrint(error)
         }
-        #endif
     }
     
     public static func log(_ item: @autoclosure () -> Any) {
-        #if DEBUG
-        debugPrint("\(item())".utils.trimmedForLogging())
-        #else
-        if isLoggingEnabled {
+        if Debug.isEnabled || Debug.isLoggingEnabled {
             debugPrint("\(item())".utils.trimmedForLogging())
         }
-        #endif
     }
     
     public static func crashlyticsLog(_ message: String = "", file: String = #file, function: String = #function, line: Int = #line) {
         let filename = URL(string: file)?.lastPathComponent ?? ""
         let prefix = "\(filename):\(line).\(function)"
         
-        #if DEBUG
-        crashlyticsInstance?.CLSNSLogv("\(prefix): \(message)")
-        #else
-        crashlyticsInstance?.CLSLogv("\(prefix): \(message)")
-        #endif
+        if Debug.isEnabled {
+            crashlyticsInstance?.CLSNSLogv("\(prefix): \(message)")
+        } else {
+            crashlyticsInstance?.CLSLogv("\(prefix): \(message)")
+        }
     }
 }

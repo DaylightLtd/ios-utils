@@ -14,22 +14,22 @@ extension ObservableType {
     public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<E> {
         return asDriver(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
-            #if DEBUG
-            fatalError("\(e)")
-            #else
-            return Driver.empty()
-            #endif
+            if Debug.isEnabled {
+                fatalError("\(e)")
+            } else {
+                return Driver.empty()
+            }
         })
     }
     
     public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<E> {
         return asSignal(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
-            #if DEBUG
-            fatalError("\(e)")
-            #else
-            return Signal.empty()
-            #endif
+            if Debug.isEnabled {
+                fatalError("\(e)")
+            } else {
+                return Signal.empty()
+            }
         })
     }
     
@@ -100,22 +100,22 @@ extension PrimitiveSequence {
     public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<E> {
         return asDriver(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
-            #if DEBUG
-            fatalError("\(e)")
-            #else
-            return Driver.empty()
-            #endif
+            if Debug.isEnabled {
+                fatalError("\(e)")
+            } else {
+                return Driver.empty()
+            }
         })
     }
     
     public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<E> {
         return asSignal(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
-            #if DEBUG
-            fatalError("\(e)")
-            #else
-            return Signal.empty()
-            #endif
+            if Debug.isEnabled {
+                fatalError("\(e)")
+            } else {
+                return Signal.empty()
+            }
         })
     }
 }

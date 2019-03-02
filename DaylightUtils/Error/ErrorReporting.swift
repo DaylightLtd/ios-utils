@@ -26,31 +26,31 @@ public func fatalErrorInDebugOrReportError<T>(default: T, file: String = #file, 
     do {
         return try action()
     } catch let error {
-        #if DEBUG
-        fatalError("Error while executing: \(error)")
-        #else
-        reportError(error, file: file, function: function, line: line)
-        return `default`
-        #endif
+        if Debug.isEnabled {
+            fatalError("Error while executing: \(error)")
+        } else {
+            reportError(error, file: file, function: function, line: line)
+            return `default`
+        }
     }
 }
 
 public func fatalErrorInDebugOrReportError(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-    #if DEBUG
-    print("\(file):\(line)")
-    fatalError(message)
-    #else
-    reportError(message, file: file, function: function, line: line)
-    #endif
+    if Debug.isEnabled {
+        print("\(file):\(line)")
+        fatalError(message)
+    } else {
+        reportError(message, file: file, function: function, line: line)
+    }
 }
 
 public func fatalErrorInDebugOrReportError(_ error: Error, file: String = #file, function: String = #function, line: Int = #line) {
-    #if DEBUG
-    print("\(file):\(line)")
-    fatalError(error.localizedDescription)
-    #else
-    reportError(error, file: file, function: function, line: line)
-    #endif
+    if Debug.isEnabled {
+        print("\(file):\(line)")
+        fatalError(error.localizedDescription)
+    } else {
+        reportError(error, file: file, function: function, line: line)
+    }
 }
 
 public func reportError(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
