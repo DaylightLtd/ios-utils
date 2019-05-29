@@ -13,13 +13,13 @@ public enum ParsingError: Error {
 }
 
 public extension ParsingError {
-    public static func makeParsingError(file: String = #file, function: String = #function, line: Int = #line) -> ParsingError {
+    static func makeParsingError(file: String = #file, function: String = #function, line: Int = #line) -> ParsingError {
         return .instance(file: file, function: function, line: line)
     }
 }
 
 public extension Optional {
-    public func unwrapOrThrow(file: String = #file, function: String = #function, line: Int = #line) throws -> Wrapped {
+    func unwrapOrThrow(file: String = #file, function: String = #function, line: Int = #line) throws -> Wrapped {
         guard case .some(let value) = self else {
             throw ParsingError.makeParsingError(file: file, function: function, line: line)
         }

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 extension ObservableType {
-    public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<E> {
+    public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<Element> {
         return asDriver(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
             if Debug.isEnabled {
@@ -22,7 +22,7 @@ extension ObservableType {
         })
     }
     
-    public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<E> {
+    public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<Element> {
         return asSignal(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
             if Debug.isEnabled {
@@ -33,9 +33,9 @@ extension ObservableType {
         })
     }
     
-    public func takeUntil(includeStopElement: Bool, stopCondition: @escaping (E) -> Bool) -> Observable<E> {
+    public func takeUntil(includeStopElement: Bool, stopCondition: @escaping (Element) -> Bool) -> Observable<Element> {
         return materialize()
-            .flatMapLatest { event -> Observable<Event<E>> in
+            .flatMapLatest { event -> Observable<Event<Element>> in
                 guard case let .next(element) = event else {
                     return Observable.just(event)
                 }
@@ -47,29 +47,29 @@ extension ObservableType {
             .dematerialize()
     }
     
-    public func valueOrEmpty<O>(_ selector: @escaping (E) -> Optional<O>) -> Observable<O> {
+    public func valueOrEmpty<O>(_ selector: @escaping (Element) -> Optional<O>) -> Observable<O> {
         return self.flatMapLatest { selector($0).map(Observable.just) ?? Observable.empty() }
     }
 }
 
 extension SharedSequence {
-    public func valueOrEmpty<O>(_ selector: @escaping (E) -> Optional<O>) -> SharedSequence<S, O> {
-        return self.flatMapLatest { selector($0).map(SharedSequence<S, O>.just) ?? SharedSequence<S, O>.empty() }
+    public func valueOrEmpty<O>(_ selector: @escaping (Element) -> Optional<O>) -> SharedSequence<SharingStrategy, O> {
+        return self.flatMapLatest { selector($0).map(SharedSequence<SharingStrategy, O>.just) ?? SharedSequence<SharingStrategy, O>.empty() }
     }
 }
 
-extension SharedSequence where E: Hashable {
-    public func delay(_ dueTime: RxTimeInterval, on elements: Set<E>) -> SharedSequence<S, E> {
-        return self.flatMapLatest { (e: E) -> SharedSequence<S, E> in
+extension SharedSequence where Element: Hashable {
+    public func delay(_ dueTime: RxTimeInterval, on elements: Set<Element>) -> SharedSequence<SharingStrategy, Element> {
+        return self.flatMapLatest { (e: Element) -> SharedSequence<SharingStrategy, Element> in
             return elements.contains(e)
-                ? SharedSequence<S, E>.just(e).delay(dueTime)
-                : SharedSequence<S, E>.just(e)
+                ? SharedSequence<SharingStrategy, Element>.just(e).delay(dueTime)
+                : SharedSequence<SharingStrategy, Element>.just(e)
         }
     }
 }
 
-extension SharedSequence where E == Void {
-    public static func timer(_ dueTime: DispatchTimeInterval, period: DispatchTimeInterval) -> SharedSequence<S, E> {
+extension SharedSequence where Element == Void {
+    public static func timer(_ dueTime: DispatchTimeInterval, period: DispatchTimeInterval) -> SharedSequence<SharingStrategy, Element> {
         return Observable.create { observer in
             let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
             timer.schedule(deadline: DispatchTime.now() + dueTime, repeating: period, leeway: DispatchTimeInterval.nanoseconds(0))
@@ -97,7 +97,7 @@ extension SharedSequence where E == Void {
 }
 
 extension PrimitiveSequence {
-    public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<E> {
+    public func asDriverIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Driver<Element> {
         return asDriver(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
             if Debug.isEnabled {
@@ -108,7 +108,7 @@ extension PrimitiveSequence {
         })
     }
     
-    public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<E> {
+    public func asSignalIgnoringErrors(file: String = #file, function: String = #function, line: Int = #line) -> Signal<Element> {
         return asSignal(onErrorRecover: { e in
             reportError(e, file: file, function: function, line: line)
             if Debug.isEnabled {

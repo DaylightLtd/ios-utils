@@ -58,7 +58,7 @@ extension Reactive where Base: UIViewController {
     
     public func removeChildViewControllers(duration: TimeInterval) -> Completable {
         guard !self.base.children.isEmpty else { return Completable.empty() }
-        return Completable.merge(self.base.children.map { (child: UIViewController) -> Completable in
+        return Completable.zip(self.base.children.map { (child: UIViewController) -> Completable in
             child.willMove(toParent: nil)
             return UIView.rx
                 .animate(duration: duration) { child.view.alpha = 0 }
