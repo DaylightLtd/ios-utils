@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxRelay
 
 struct ActivityToken<E> : ObservableConvertibleType, Disposable {
     private let _source: Observable<E>
@@ -29,15 +30,15 @@ struct ActivityToken<E> : ObservableConvertibleType, Disposable {
 }
 
 public class ActivityIndicator : SharedSequenceConvertibleType {
-    public typealias E = Bool
+    public typealias Element = Bool
     public typealias SharingStrategy = DriverSharingStrategy
     
     private let _lock = NSRecursiveLock()
-    private let _variable = Variable(0)
+    private let _relay = BehaviorRelay(value: 0)
     private let _loading: Driver<Bool>
     
     public init() {
-        _loading = _variable.asObservable()
+        _loading = _relay.asObservable()
             .map { $0 > 0 }
             .distinctUntilChanged()
             .asDriver(onErrorRecover: ActivityIndicator.ifItStillErrors)
@@ -47,8 +48,8 @@ public class ActivityIndicator : SharedSequenceConvertibleType {
         _ = fatalError("Loader can't fail")
     }
     
-    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.E> {
-        return Observable.using({ () -> ActivityToken<O.E> in
+    fileprivate func trackActivityOfObservable<O: ObservableConvertibleType>(_ source: O) -> Observable<O.Element> {
+        return Observable.using({ () -> ActivityToken<O.Element> in
             self.increment()
             return ActivityToken(source: source.asObservable(), disposeAction: self.decrement)
         }) { t in
@@ -58,29 +59,29 @@ public class ActivityIndicator : SharedSequenceConvertibleType {
     
     private func increment() {
         _lock.lock()
-        _variable.value = _variable.value + 1
+        _relay.accept(_relay.value + 1)
         _lock.unlock()
     }
     
     private func decrement() {
         _lock.lock()
-        _variable.value = _variable.value - 1
+        _relay.accept(_relay.value - 1)
         _lock.unlock()
     }
     
-    public func asSharedSequence() -> SharedSequence<SharingStrategy, E> {
+    public func asSharedSequence() -> SharedSequence<SharingStrategy, Element> {
         return _loading
     }
 }
 
 public extension ObservableConvertibleType {
-    func trackActivity(_ activityIndicator: ActivityIndicator) -> Observable<E> {
+    func trackActivity(_ activityIndicator: ActivityIndicator) -> Observable<Element> {
         return activityIndicator.trackActivityOfObservable(self)
     }
 }
 
 public extension SharedSequence {
-    func trackActivity(_ activityIndicator: ActivityIndicator) -> SharedSequence<S, E> {
+    func trackActivity(_ activityIndicator: ActivityIndicator) -> SharedSequence<SharingStrategy, Element> {
         return activityIndicator.trackActivityOfObservable(self).asSharedSequence(onErrorRecover: { error in
             fatalErrorInDebugOrReportError(error)
             return SharedSequence.empty()
